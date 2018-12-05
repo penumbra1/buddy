@@ -16,3 +16,15 @@ If you run into anything else, open an issue and we'll try to clarify or help.
 [fem]: https://frontendmasters.com/
 [course]: https://frontendmasters.com/courses/complete-react-v4/
 [course-intermediate]: https://frontendmasters.com/courses/intermediate-react/
+
+----------------
+
+Things I've done:
+
+Added the new [SVGR Parcel plugin](https://www.npmjs.com/package/@svgr/parcel-plugin-svgr) to import svg as components.
+
+Designed a logo and restyled everything.
+
+Improved markup accessibility.
+
+Added more tests and an SVG mock.

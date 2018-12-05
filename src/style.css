@@ -9,6 +9,17 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
 .search,
 .details,
 .search-params {
@@ -62,22 +73,6 @@ body {
   font-weight: normal;
   font-size: 20px;
   margin: 0;
-}
-
-header a {
-  color: #f2af29;
-  font-size: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  display: block;
-}
-
-header {
-  display: flex;
-  align-content: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  padding: 20px;
 }
 
 .details p {

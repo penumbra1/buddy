@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+.emotion-4 {
+  background-color: #393a3f;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 1rem 2rem;
+}
+
+.emotion-0 {
+  width: 120px;
+  fill: #e8aa8c;
+  margin: 0.8rem;
+  -webkit-transition: fill 0.2s ease-in-out;
+  transition: fill 0.2s ease-in-out;
+}
+
+.emotion-0:hover {
+  fill: #e8aa8c;
+}
+
+.emotion-3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  max-width: 30vw;
+}
+
+.emotion-1 {
+  width: 36px;
+  fill: #e2dcd5;
+  margin: 0.8rem;
+  -webkit-transition: fill 0.2s ease-in-out;
+  transition: fill 0.2s ease-in-out;
+}
+
+.emotion-1:hover {
+  fill: #e8aa8c;
+}
+
+<header
+  className="emotion-4"
+>
+  <a
+    aria-current="page"
+    href="/"
+    onClick={[Function]}
+  >
+    <span
+      className="visuallyhidden"
+    >
+      Buddy
+    </span>
+    <div
+      aria-hidden={true}
+      className="emotion-0"
+      fill="#e8aa8c"
+      width="120px"
+    >
+      <SvgMock />
+    </div>
+  </a>
+  <nav
+    className="emotion-3"
+  >
+    <a
+      href="/search-params"
+      onClick={[Function]}
+    >
+      <span
+        className="visuallyhidden"
+      >
+        Search
+      </span>
+      <div
+        aria-hidden={true}
+        className="emotion-1"
+        width="36px"
+      >
+        <SvgMock />
+      </div>
+    </a>
+    <a
+      href="/favorites"
+      onClick={[Function]}
+    >
+      <span
+        className="visuallyhidden"
+      >
+        Favorites
+      </span>
+      <div
+        aria-hidden={true}
+        className="emotion-1"
+        width="36px"
+      >
+        <SvgMock />
+      </div>
+    </a>
+  </nav>
+</header>
+`;
