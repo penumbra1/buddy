@@ -1,6 +1,7 @@
 import React from "react";
 import { ANIMALS } from "petfinder-client";
 import { Consumer } from "./SearchContext";
+import MainBox from "./MainBox";
 
 class Search extends React.Component {
   handleFormSubmit = event => {
@@ -11,7 +12,7 @@ class Search extends React.Component {
     return (
       <Consumer>
         {context => (
-          <div className="search-params">
+          <MainBox as="div" className="search-params">
             <form onSubmit={this.handleFormSubmit}>
               <label htmlFor="location">
                 Location
@@ -57,7 +58,7 @@ class Search extends React.Component {
               </label>
               <button>Submit</button>
             </form>
-          </div>
+          </MainBox>
         )}
       </Consumer>
     );

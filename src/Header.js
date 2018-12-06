@@ -6,7 +6,7 @@ import Search from "./icon-search.svg";
 import Heart from "./icon-heart.svg";
 import colors from "./colors";
 
-const Container = styled("header")`
+const Container = styled.header`
   background-color: ${colors.dark};
   position: sticky;
   top: 0;
@@ -26,7 +26,7 @@ const Nav = styled.nav`
 `;
 
 const IconContainer = styled.div`
-  width: ${props => props.width};
+  width: ${props => props.width || "36px"};
   fill: ${props => props.fill || colors.greyLight};
   margin: 0.8rem;
   transition: fill 0.2s ease-in-out;
@@ -56,18 +56,8 @@ const Header = () => {
         description="Buddy"
       />
       <Nav>
-        <IconLink
-          to="/search-params"
-          image={<Search />}
-          width="36px"
-          description="Search"
-        />
-        <IconLink
-          to="/favorites"
-          image={<Heart />}
-          width="36px"
-          description="Favorites"
-        />
+        <IconLink to="/search-params" image={<Search />} description="Search" />
+        <IconLink to="/favorites" image={<Heart />} description="Favorites" />
       </Nav>
     </Container>
   );

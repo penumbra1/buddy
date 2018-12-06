@@ -1,5 +1,6 @@
 import React from "react";
 import pf from "petfinder-client";
+import MainBox from "./MainBox";
 import Pet from "./Pet";
 import SearchBox from "./SearchBox";
 import { Consumer } from "./SearchContext";
@@ -46,7 +47,7 @@ class Results extends React.Component {
   };
   render() {
     return (
-      <div className="search">
+      <MainBox className="search">
         <SearchBox search={this.search} />
         {this.state.pets.map(pet => {
           let breed;
@@ -67,7 +68,7 @@ class Results extends React.Component {
             />
           );
         })}
-      </div>
+      </MainBox>
     );
   }
 }

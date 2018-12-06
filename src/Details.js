@@ -3,6 +3,7 @@ import pf from "petfinder-client";
 import { navigate } from "@reach/router";
 import Carousel from "./Carousel";
 import Modal from "./Modal";
+import MainBox from "./MainBox";
 
 const petfinder = pf({
   key: process.env.API_KEY,
@@ -57,7 +58,7 @@ class Details extends React.Component {
     } = this.state;
 
     return (
-      <div className="details">
+      <MainBox className="details">
         <Carousel media={media} />
         <div>
           <h1>{name}</h1>
@@ -74,7 +75,7 @@ class Details extends React.Component {
             </Modal>
           ) : null}
         </div>
-      </div>
+      </MainBox>
     );
   }
 }

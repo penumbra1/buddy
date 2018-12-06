@@ -1,15 +1,15 @@
-* {
+/* * {
   box-sizing: border-box;
   color: #333;
-}
+} */
 
-body {
+/* body {
   background-color: #ad343e;
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
+} */
 
-.visuallyhidden {
+/* .visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -18,9 +18,9 @@ body {
   padding: 0;
   position: absolute;
   width: 1px;
-}
+} */
 
-.search,
+/* .search,
 .details,
 .search-params {
   background-color: #c4b2bc;
@@ -28,7 +28,7 @@ body {
   margin: 0 auto;
   padding: 15px;
   border-radius: 5px;
-}
+} */
 
 .pet {
   width: 100%;
@@ -125,7 +125,7 @@ body {
   margin-bottom: 30px;
   font-size: 18px;
   height: 30px;
-  width: 325px;
+  width: 320px;
 }
 
 .search-params button,

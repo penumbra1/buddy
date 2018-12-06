@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/btholt/complete-intro-to-react-v4.git"
+    "url": "git+https://github.com/penumbra1/buddy.git"
   },
   "author": "Brian Holt <btholt@gmail.com>",
   "contributors": [
@@ -19,34 +19,37 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/btholt/complete-intro-to-react-v4/issues"
+    "url": "https://github.com/penumbra1/buddy/issues"
   },
-  "homepage": "https://github.com/btholt/complete-intro-to-react-v4#readme",
+  "homepage": "https://github.com/penumbra1/buddy#readme",
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@svgr/parcel-plugin-svgr": "^4.1.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
+    "babel-jest": "^23.6.0",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.10.0",
     "jest": "^23.6.0",
-    "jest-emotion": "^10.0.2",
+    "jest-emotion": "^10.0.4",
     "parcel-bundler": "^1.10.3",
     "prettier": "^1.15.3",
     "react-test-renderer": "^16.6.3"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.2",
-    "@emotion/styled": "^10.0.2",
+    "@emotion/core": "^10.0.4",
+    "@emotion/styled": "^10.0.4",
     "@reach/router": "^1.2.1",
-    "@svgr/parcel-plugin-svgr": "^4.1.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "petfinder-client": "^0.0.3",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "react-loadable": "^5.5.0"
   }
 }

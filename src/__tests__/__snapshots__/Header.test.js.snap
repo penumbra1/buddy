@@ -99,7 +99,6 @@ exports[`should render correctly 1`] = `
       <div
         aria-hidden={true}
         className="emotion-1"
-        width="36px"
       >
         <SvgMock />
       </div>
@@ -116,7 +115,6 @@ exports[`should render correctly 1`] = `
       <div
         aria-hidden={true}
         className="emotion-1"
-        width="36px"
       >
         <SvgMock />
       </div>
