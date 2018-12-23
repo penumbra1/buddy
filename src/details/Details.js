@@ -2,8 +2,9 @@ import React from "react";
 import pf from "petfinder-client";
 import { navigate } from "@reach/router";
 import Carousel from "./Carousel";
-import Modal from "./Modal";
-import MainBox from "./MainBox";
+import MainBox from "../common/MainBox";
+import Split from "../common/Split";
+import Button from "../common/Button";
 
 const petfinder = pf({
   key: process.env.API_KEY,
@@ -66,13 +67,13 @@ class Details extends React.Component {
           <button onClick={this.toggleModal}>Adopt {name}</button>
           <p>{description}</p>
           {showModal ? (
-            <Modal>
+            <Split loader={() => import("./Modal")}>
               <h1>Would you like to adopt {name}?</h1>
               <div className="buttons">
-                <button onClick={this.toggleModal}>Yes</button>
-                <button onClick={this.toggleModal}>No</button>
+                <Button onClick={this.toggleModal}>Yes</Button>
+                <Button onClick={this.toggleModal}>No</Button>
               </div>
-            </Modal>
+            </Split>
           ) : null}
         </div>
       </MainBox>

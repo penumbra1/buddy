@@ -13,10 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/penumbra1/buddy.git"
   },
-  "author": "Brian Holt <btholt@gmail.com>",
-  "contributors": [
-    "Olga Isakova <penumbral@yandex.ru>"
-  ],
+  "author": "Olga Isakova <penumbral@yandex.ru>",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/penumbra1/buddy/issues"
@@ -32,6 +29,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
+    "babel-plugin-dynamic-import-node": "^2.2.0",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-import": "^2.13.0",
@@ -47,9 +45,13 @@
     "@emotion/core": "^10.0.4",
     "@emotion/styled": "^10.0.4",
     "@reach/router": "^1.2.1",
+    "focus-visible": "^4.1.5",
     "petfinder-client": "^0.0.3",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-loadable": "^5.5.0"
+    "react-loadable": "^5.5.0",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   }
 }

@@ -5,9 +5,20 @@ import colors from "./colors";
 const GlobalStyles = () => (
   <Global
     styles={css`
+      :root {
+        font-size: 62.5%;
+      }
       * {
         box-sizing: border-box;
         color: ${colors.dark};
+
+        &:focus {
+          outline: 2px solid ${colors.primary};
+        }
+
+        &:focus:not(.focus-visible) {
+          outline: none;
+        }
       }
 
       body {
@@ -25,6 +36,13 @@ const GlobalStyles = () => (
         padding: 0;
         position: absolute;
         width: 1px;
+      }
+
+      input,
+      textarea,
+      select,
+      button {
+        font-family: inherit;
       }
     `}
   />

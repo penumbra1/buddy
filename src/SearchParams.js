@@ -1,15 +1,16 @@
 import React from "react";
 import { navigate } from "@reach/router";
-import SearchBox from "./SearchBox";
+import SearchBox from "./search/SearchBox";
 
 class Search extends React.Component {
   search() {
     navigate("/");
   }
+
   render() {
     return (
       <div className="search-route">
-        <SearchBox search={this.search} />
+        <SearchBox onSearch={this.search} />
       </div>
     );
   }

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`toggleFavorite should create an action correctly 1`] = `
+Object {
+  "id": "1",
+  "type": "TOGGLE_FAVORITE",
+}
+`;
+
+exports[`updateSearch should create an action correctly 1`] = `
+Object {
+  "changes": Object {
+    "location": "Cleveland, OH",
+  },
+  "type": "UPDATE_SEARCH",
+}
+`;

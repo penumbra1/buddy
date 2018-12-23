@@ -19,20 +19,27 @@ exports[`should render correctly 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  margin-bottom: 20px;
-  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem 5vw;
 }
 
 .emotion-0 {
-  width: 120px;
-  fill: #e8aa8c;
-  margin: 0.8rem;
-  -webkit-transition: fill 0.2s ease-in-out;
-  transition: fill 0.2s ease-in-out;
+  fill: #ff9581;
+  box-sizing: content-box;
+  width: 13rem;
+  margin: 0 0.6rem;
+  padding: 1.2rem;
+  -webkit-transition: fill 0.15s ease-in-out;
+  transition: fill 0.15s ease-in-out;
 }
 
-.emotion-0:hover {
-  fill: #e8aa8c;
+.emotion-0 div svg {
+  display: block;
+}
+
+.emotion-0:hover,
+.emotion-0:focus {
+  fill: #ff9581;
 }
 
 .emotion-3 {
@@ -51,15 +58,22 @@ exports[`should render correctly 1`] = `
 }
 
 .emotion-1 {
-  width: 36px;
   fill: #e2dcd5;
-  margin: 0.8rem;
-  -webkit-transition: fill 0.2s ease-in-out;
-  transition: fill 0.2s ease-in-out;
+  box-sizing: content-box;
+  width: 3.6rem;
+  margin: 0 0.6rem;
+  padding: 1.2rem;
+  -webkit-transition: fill 0.15s ease-in-out;
+  transition: fill 0.15s ease-in-out;
 }
 
-.emotion-1:hover {
-  fill: #e8aa8c;
+.emotion-1 div svg {
+  display: block;
+}
+
+.emotion-1:hover,
+.emotion-1:focus {
+  fill: #ff9581;
 }
 
 <header
@@ -67,8 +81,11 @@ exports[`should render correctly 1`] = `
 >
   <a
     aria-current="page"
+    className="emotion-0"
+    fill="#ff9581"
     href="/"
     onClick={[Function]}
+    width="13rem"
   >
     <span
       className="visuallyhidden"
@@ -77,9 +94,6 @@ exports[`should render correctly 1`] = `
     </span>
     <div
       aria-hidden={true}
-      className="emotion-0"
-      fill="#e8aa8c"
-      width="120px"
     >
       <SvgMock />
     </div>
@@ -88,6 +102,7 @@ exports[`should render correctly 1`] = `
     className="emotion-3"
   >
     <a
+      className="emotion-1"
       href="/search-params"
       onClick={[Function]}
     >
@@ -98,12 +113,12 @@ exports[`should render correctly 1`] = `
       </span>
       <div
         aria-hidden={true}
-        className="emotion-1"
       >
         <SvgMock />
       </div>
     </a>
     <a
+      className="emotion-1"
       href="/favorites"
       onClick={[Function]}
     >
@@ -114,7 +129,6 @@ exports[`should render correctly 1`] = `
       </span>
       <div
         aria-hidden={true}
-        className="emotion-1"
       >
         <SvgMock />
       </div>
