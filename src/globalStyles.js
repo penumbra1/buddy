@@ -11,6 +11,7 @@ const GlobalStyles = () => (
       * {
         box-sizing: border-box;
         color: ${colors.dark};
+        outline: none;
 
         &:focus {
           outline: 2px solid ${colors.primary};

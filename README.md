@@ -10,7 +10,11 @@ Created a new logo and restyled everything, added a lazy-loading image placehold
 
 Improved markup accessibility; added [focus-visible](https://github.com/WICG/focus-visible) to handle keyboard-only focus styles.
 
+Used powerful dropdowns from [react-select](https://github.com/JedWatson/react-select).
+
 Added more tests and an SVG mock.
+
+Implemented adding to favorites.
 
 Added plugins:
 
@@ -23,13 +27,10 @@ Upgraded to babel 7.
 
 ## Notes:
 
-I'm avoiding emotion's [css prop](https://emotion.sh/docs/css-prop) syntax until the [babel preset for JSX pragma](https://github.com/emotion-js/emotion/pull/1049) is merged.
-
 Petfinder API data is not very clean: responses may contain announcements instead of animal profiles and there is no way to filter them out (announcements look exactly like animal entries with a name, a type/breed, a picture and a description). I'm leaving it as is for now.
 
 ## Todo
 
-- Bug: breeds overflow and hide div content
 - Likes
 - Persistence of liked pets to localStorage via redux-persist
 - I might swap Redux for Hooks. _Anyway, Redux is a complete overkill in this case and is included just for practice_.

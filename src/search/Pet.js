@@ -1,15 +1,21 @@
-import React, { lazy, Suspense } from "react";
+/** @jsx jsx */
+
+import React, { lazy, Suspense, PureComponent } from "react";
 import { Link } from "@reach/router";
 import styled from "@emotion/styled";
-import LocationIcon from "../assets/home.svg";
+import { css, jsx } from "@emotion/core";
+import Home from "../assets/home.svg";
+import Heart from "../assets/heart.svg";
 import colors from "../colors";
 
 const Placeholder = lazy(() => import("../assets/placeholder.svg"));
-const Home = styled(LocationIcon)`
-  height: 1.5rem;
-  margin-right: 0.5rem;
-  fill: ${colors.greyDark};
-`;
+
+const iconStyles = {
+  height: "1.6rem",
+  display: "inline-block",
+  marginRight: "0.8rem",
+  fill: colors.greyDark
+};
 
 const StyledLink = styled(Link)`
   width: 100%;
@@ -19,13 +25,8 @@ const StyledLink = styled(Link)`
   padding: 1.5rem;
   text-decoration: none;
   box-shadow: 1px 1px 1px 2px ${colors.shadow};
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 40%;
-  }
+  border-left: ${props =>
+    `3px solid ${props.isFavorite ? colors.primaryLight : colors.greyDark}`};
 
   .image-container {
     width: 100px;
@@ -37,8 +38,15 @@ const StyledLink = styled(Link)`
     flex-shrink: 0;
   }
 
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
   .info {
-    height: 100px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -67,12 +75,21 @@ const StyledLink = styled(Link)`
   p {
     font-size: 1.7rem;
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 `;
 
-class Pet extends React.Component {
+class Pet extends PureComponent {
+  handleClickFavorite = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.onClickFavorite(this.props.id);
+  };
+
   render() {
-    const { name, animal, breed, media, location, id } = this.props;
+    let { name, breed, media, location, id, isFavorite } = this.props;
     let photos = [];
     if (media && media.photos && media.photos.photo) {
       photos = media.photos.photo.filter(photo => photo["@size"] === "pn");
@@ -98,8 +115,27 @@ class Pet extends React.Component {
           <h1>{name}</h1>
           <h2>{breed}</h2>
           <p>
-            <Home />
-            {location}
+            <span>
+              <Home css={iconStyles} />
+              {location}
+            </span>
+            <button
+              css={{
+                flex: "0 0 4rem",
+                padding: "1rem",
+                background: "transparent",
+                border: "none"
+              }}
+              onClick={this.handleClickFavorite}
+            >
+              <Heart
+                css={{
+                  ...iconStyles,
+                  margin: "auto",
+                  fill: isFavorite ? colors.primary : colors.greyLight
+                }}
+              />
+            </button>
           </p>
         </div>
       </StyledLink>

@@ -7,7 +7,10 @@ export default {
   greyLight: "#e2dcd5",
   greyDark: "#c2b5b0",
   primary: "#fd7a68",
+  primaryRGB: "253,122,104",
   primaryLight: "#ff9581",
   primaryDark: "#fd6955",
-  shadow: "rgba(57, 58, 63, 0.07)" // dark with transparency
+  shadow: "rgba(57, 58, 63, 0.07)", // dark with transparency
+  border: "rgba(57, 58, 63, 0.12)",
+  darkRGB: "57, 58, 63"
 };

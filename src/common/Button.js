@@ -9,8 +9,9 @@ const Button = styled.button`
   font-weight: 600;
   letter-spacing: 0.065em;
   border: 2px solid ${colors.primary};
-  border-radius: 10px;
+  border-radius: 2.5rem;
   display: block;
+  height: 5rem;
   margin: 0 auto;
   cursor: pointer;
   transition: all 0.15s ease-in-out;

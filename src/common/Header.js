@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "@reach/router";
 import styled from "@emotion/styled";
 import Logo from "../assets/logo.svg";
-import Search from "../assets/icon-search.svg";
-import Heart from "../assets/icon-heart.svg";
+import Search from "../assets/search.svg";
+import Heart from "../assets/heart-line.svg";
 import colors from "../colors";
 
 const Wrapper = styled.header`
@@ -16,6 +16,7 @@ const Wrapper = styled.header`
   justify-content: space-between;
   margin-bottom: 2rem;
   padding: 1rem 5vw;
+  border-radius: 0% 0% 15px 15px;
 `;
 
 const Nav = styled.nav`
@@ -70,6 +71,7 @@ const Header = () => {
           to="/favorites"
           image={<Heart />}
           description="Favorites"
+          width="3.4rem"
         />
       </Nav>
     </Wrapper>
