@@ -29,8 +29,20 @@ Upgraded to babel 7.
 
 Petfinder API data is not very clean: responses may contain announcements instead of animal profiles and there is no way to filter them out (announcements look exactly like animal entries with a name, a type/breed, a picture and a description). I'm leaving it as is for now.
 
+Suspense doesn't support data fetching and SSR yet so I'm using [react-lazy-load-image-component](https://www.npmjs.com/package/react-lazy-load-image-component) and [react-loadable](https://github.com/jamiebuilds/react-loadable) for now.
+
 ## Todo
 
+- Search multiple breeds (fetch all in a thunk)
+- No results fallback
+- Cache breedLists for previously searched animals
+- City search dropdown
+- Pagination
+- Show form under header on search icon click if current route is Search, navigate to / if not (instead of the SearchParams route)
 - Likes
+- Form theme: add neutral shades instead of rgba(0,0,0,...)
+- In the details page, link to search all animals of this breed in this location
 - Persistence of liked pets to localStorage via redux-persist
+- Manage scroll position in the search list
 - I might swap Redux for Hooks. _Anyway, Redux is a complete overkill in this case and is included just for practice_.
+- Shelter maps?

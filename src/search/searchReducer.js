@@ -1,20 +1,36 @@
-export const updateSearch = changes => {
+import { getBreeds } from "../petfinder";
+
+export const updateSearchData = data => {
   return {
-    type: "UPDATE_SEARCH",
-    changes
+    type: "UPDATE_SEARCH_DATA",
+    data
+  };
+};
+
+export const updateResults = data => {
+  return {
+    type: "UPDATE_RESULTS",
+    data
   };
 };
 
 const defaultState = {
   location: "Seattle, WA",
   animal: "cat",
-  breed: ""
+  breed: "",
+  breedList: [],
+  results: []
 };
 
 export default (state = defaultState, action) => {
-  const { type, changes } = action;
-  if (type === "UPDATE_SEARCH") {
-    if (changes.animal) changes.breed = "";
-    return { ...state, ...changes };
-  } else return state;
+  const { type, data } = action;
+
+  switch (type) {
+    case "UPDATE_SEARCH_DATA":
+      return { ...state, ...data };
+    case "UPDATE_RESULTS":
+      return { ...state, results: data };
+    default:
+      return state;
+  }
 };

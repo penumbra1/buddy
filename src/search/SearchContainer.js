@@ -3,29 +3,34 @@ import { connect } from "react-redux";
 import MainBox from "../common/MainBox";
 import SearchBox from "./SearchBox";
 import Results from "./Results";
-import { updateSearch } from "./searchReducer";
+import { search } from "../petfinder";
+import { updateResults } from "./searchReducer";
 import { toggleFavorite } from "../favorites/favoritesReducer";
 import Pet from "./Pet";
 
 class SearchContainer extends Component {
-  state = { pets: [] };
+  componentDidMount() {
+    if (this.props.results.length === 0) {
+      this.handleSearch(this.props.params);
+    }
+  }
 
-  handleSearch = (params, results) => {
-    results.then(pets => {
-      this.props.updateSearch(params);
-      this.setState({ pets });
+  handleSearch = searchParams => {
+    search(searchParams).then(results => {
+      this.props.updateResults(results);
     });
   };
 
   render() {
+    const { results, favorites } = this.props;
     return (
       <MainBox className="search">
         <SearchBox
-          initialParams={this.props.searchParams}
           onSearch={this.handleSearch}
+          searchOnMount={results.length === 0}
         />
         <Results>
-          {this.state.pets.map(pet => {
+          {results.map(pet => {
             let breed;
             if (Array.isArray(pet.breeds.breed)) {
               breed = pet.breeds.breed.join(", ");
@@ -41,7 +46,7 @@ class SearchContainer extends Component {
                 media={pet.media}
                 location={`${pet.contact.city}, ${pet.contact.state}`}
                 id={pet.id}
-                isFavorite={this.props.favorites.includes(pet.id)}
+                isFavorite={favorites.includes(pet.id)}
                 onClickFavorite={this.props.toggleFavorite}
               />
             );
@@ -52,11 +57,12 @@ class SearchContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ search: searchParams, favorites }) => ({
-  searchParams,
+const mapStateToProps = ({ search: { results, ...params }, favorites }) => ({
+  results,
+  params,
   favorites
 });
-const mapDispatchToProps = { updateSearch, toggleFavorite };
+const mapDispatchToProps = { updateResults, toggleFavorite };
 
 export default connect(
   mapStateToProps,

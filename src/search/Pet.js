@@ -1,14 +1,20 @@
 /** @jsx jsx */
 
-import React, { lazy, Suspense, PureComponent } from "react";
+import React, { PureComponent } from "react";
 import { Link } from "@reach/router";
 import styled from "@emotion/styled";
 import { css, jsx } from "@emotion/core";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import PlaceholderIcon from "../assets/placeholder.svg";
 import Home from "../assets/home.svg";
 import Heart from "../assets/heart.svg";
 import colors from "../colors";
 
-const Placeholder = lazy(() => import("../assets/placeholder.svg"));
+const Placeholder = () => (
+  <div className="image-container">
+    <PlaceholderIcon fill={colors.greyDark} />
+  </div>
+);
 
 const iconStyles = {
   height: "1.6rem",
@@ -18,15 +24,17 @@ const iconStyles = {
 };
 
 const StyledLink = styled(Link)`
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   margin: 0;
   background-color: ${colors.white};
   padding: 1.5rem;
   text-decoration: none;
   box-shadow: 1px 1px 1px 2px ${colors.shadow};
-  border-left: ${props =>
-    `3px solid ${props.isFavorite ? colors.primaryLight : colors.greyDark}`};
+  /* border-left: ${props =>
+    `3px solid ${props.isFavorite ? colors.primaryLight : colors.greyDark}`}; */
+    border-left:
+      3px solid ${colors.greyDark};
 
   .image-container {
     width: 100px;
@@ -42,7 +50,7 @@ const StyledLink = styled(Link)`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 40%;
+    object-position: center;
   }
 
   .info {
@@ -53,23 +61,21 @@ const StyledLink = styled(Link)`
     overflow: hidden;
   }
 
-  h1 {
-    font-weight: normal;
-    font-size: 2.5rem;
-    width: 100%;
+  h1,
+  h2 {
     margin: 0;
+    font-weight: normal;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
+  h1 {
+    font-size: 2.5rem;
+  }
+
   h2 {
-    font-weight: normal;
     font-size: 2rem;
-    margin: -1rem 0 0 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   p {
@@ -101,16 +107,24 @@ class Pet extends PureComponent {
     }
 
     return (
-      <StyledLink to={`/details/${id}`}>
-        <div className="image-container">
-          {hero ? (
-            <img src={hero} alt={name} />
-          ) : (
-            <Suspense fallback={null}>
-              <Placeholder style={{ fill: colors.greyDark }} />
-            </Suspense>
-          )}
-        </div>
+      <StyledLink
+        to={`/details/${id}`}
+        css={css`
+          border-left: 3px solid
+            ${isFavorite ? colors.primaryLight : colors.greyDark};
+        `}
+      >
+        {hero ? (
+          <LazyLoadImage
+            alt={name}
+            src={hero}
+            effect="opacity"
+            wrapperClassName="image-container"
+          />
+        ) : (
+          <Placeholder />
+        )}
+
         <div className="info">
           <h1>{name}</h1>
           <h2>{breed}</h2>

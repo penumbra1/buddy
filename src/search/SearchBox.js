@@ -1,7 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import Select from "react-select";
 import { ANIMALS } from "petfinder-client";
-import { search, getBreeds } from "../petfinder";
+import { getBreeds } from "../petfinder";
+import { updateSearchData } from "./searchReducer";
 import Button from "../common/Button";
 import styled from "@emotion/styled";
 import colors from "../colors";
@@ -39,31 +41,26 @@ const overrideTheme = theme => ({
   }
 });
 
-// SearchBox is aware of the API but unaware of Redux.
-// It manages transitory search parameter changes and data fetching.
+// SearchBox uses Redux to persist form data between page reloads.
+// Search results are managed by the parent SearchContainer.
 
 class SearchBox extends React.Component {
   state = {
-    ...this.props.initialParams,
-    breedList: []
+    ...this.props.params,
+    breedList: this.props.breedList
   };
 
   componentDidMount() {
-    this.search();
-    // Fetch breeds in without rerendering
-    getBreeds(this.state.animal).then(breedList =>
-      this.setState({ breedList })
-    );
+    if (this.props.breedList.length === 0) {
+      getBreeds(this.state.animal).then(breedList =>
+        this.setState({ breedList })
+      );
+    }
   }
-
-  search = () => {
-    const { breedList, ...searchParams } = this.state;
-    const results = search(searchParams); // Promise
-    this.props.onSearch(searchParams, results);
-  };
 
   handleChange = (id, value) => {
     if (id === "animal") {
+      this.setState({ breed: "" });
       getBreeds(value).then(breedList => this.setState({ breedList }));
     }
 
@@ -72,7 +69,10 @@ class SearchBox extends React.Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    this.search();
+
+    const { breedList, ...searchParams } = this.state;
+    this.props.updateSearchData(this.state);
+    this.props.onSearch(searchParams);
   };
 
   render() {
@@ -91,10 +91,13 @@ class SearchBox extends React.Component {
           Animal
           <Select
             options={ANIMALS.map(a => ({ value: a, label: a }))}
+            inputId="animal"
             // https://github.com/JedWatson/react-select/issues/2669
             value={{ value: this.state.animal, label: this.state.animal }}
-            inputId="animal"
-            onChange={({ value }) => this.handleChange("animal", value)}
+            isClearable
+            onChange={option =>
+              this.handleChange("animal", option ? option.value : "")
+            }
             theme={overrideTheme}
             // styles={selectStyles}
           />
@@ -104,9 +107,14 @@ class SearchBox extends React.Component {
           <Select
             options={this.state.breedList.map(b => ({ value: b, label: b }))}
             inputId="breed"
-            isDisabled={!this.state.breedList.length}
-            isMulti
-            onChange={({ value }) => this.handleChange("breed", value)}
+            isDisabled={!this.state.breedList.length === 0}
+            // isMulti
+            value={{ value: this.state.breed, label: this.state.breed }}
+            isClearable
+            onChange={option =>
+              this.handleChange("breed", option ? option.value : "")
+            }
+            theme={overrideTheme}
           />
         </label>
         <Button>Submit</Button>
@@ -115,4 +123,14 @@ class SearchBox extends React.Component {
   }
 }
 
-export default SearchBox;
+const mapStateToProps = ({ search: { results, breedList, ...params } }) => ({
+  breedList,
+  params
+});
+
+const mapDispatchToProps = { updateSearchData };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchBox);
