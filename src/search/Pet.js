@@ -120,6 +120,7 @@ class Pet extends PureComponent {
             src={hero}
             effect="opacity"
             wrapperClassName="image-container"
+            scrollPosition={this.props.scrollPosition}
           />
         ) : (
           <Placeholder />

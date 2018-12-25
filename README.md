@@ -31,6 +31,8 @@ Petfinder API data is not very clean: responses may contain announcements instea
 
 Suspense doesn't support data fetching and SSR yet so I'm using [react-lazy-load-image-component](https://www.npmjs.com/package/react-lazy-load-image-component) and [react-loadable](https://github.com/jamiebuilds/react-loadable) for now.
 
+At the moment react-lazy-load-image-component causes setTimeout warnings, although I used their trackWindowScroll HOC to optimize performance.
+
 ## Todo
 
 - Search multiple breeds (fetch all in a thunk)

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { trackWindowScroll } from "react-lazy-load-image-component";
 import MainBox from "../common/MainBox";
 import SearchBox from "./SearchBox";
 import Results from "./Results";
@@ -22,15 +23,11 @@ class SearchContainer extends Component {
   };
 
   render() {
-    const { results, favorites } = this.props;
     return (
       <MainBox className="search">
-        <SearchBox
-          onSearch={this.handleSearch}
-          searchOnMount={results.length === 0}
-        />
+        <SearchBox onSearch={this.handleSearch} />
         <Results>
-          {results.map(pet => {
+          {this.props.results.map(pet => {
             let breed;
             if (Array.isArray(pet.breeds.breed)) {
               breed = pet.breeds.breed.join(", ");
@@ -46,8 +43,9 @@ class SearchContainer extends Component {
                 media={pet.media}
                 location={`${pet.contact.city}, ${pet.contact.state}`}
                 id={pet.id}
-                isFavorite={favorites.includes(pet.id)}
+                isFavorite={this.props.favorites.includes(pet.id)}
                 onClickFavorite={this.props.toggleFavorite}
+                scrollPosition={this.props.scrollPosition}
               />
             );
           })}
@@ -67,4 +65,4 @@ const mapDispatchToProps = { updateResults, toggleFavorite };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchContainer);
+)(trackWindowScroll(SearchContainer));
