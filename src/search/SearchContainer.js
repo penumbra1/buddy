@@ -40,6 +40,8 @@ class SearchContainer extends Component {
                 key={pet.id}
                 name={pet.name}
                 breed={breed}
+                sex={pet.sex}
+                age={pet.age}
                 media={pet.media}
                 location={`${pet.contact.city}, ${pet.contact.state}`}
                 id={pet.id}

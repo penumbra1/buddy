@@ -12,9 +12,10 @@ const GlobalStyles = () => (
         box-sizing: border-box;
         color: ${colors.dark};
         outline: none;
+        font-size: 1.6rem;
 
         &:focus {
-          outline: 2px solid ${colors.primary};
+          outline: 2px dotted ${colors.primary};
         }
 
         &:focus:not(.focus-visible) {

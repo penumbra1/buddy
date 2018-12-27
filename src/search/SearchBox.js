@@ -9,6 +9,7 @@ import { getBreeds } from "../petfinder";
 import { updateSearchData } from "./searchReducer";
 import Button from "../common/Button";
 import styled from "@emotion/styled";
+import Color from "color";
 import colors from "../colors";
 
 import getCities from "./algoliaPlaces";
@@ -18,12 +19,20 @@ const StyledForm = styled.form`
   grid-gap: 2.4rem 3rem;
   grid-template-columns: repeat(auto-fit, minmax(auto, 360px));
   justify-content: center;
-  margin-bottom: 5rem;
+  margin-bottom: 6rem;
+  padding: 5rem;
+  background-color: ${colors.primaryLight};
+  border-radius: 0 0 70% 70% / 0 0 18rem 18rem;
+  box-shadow: 0 1px 4px
+    ${Color(colors.primaryLight)
+      .darken(0.6)
+      .alpha(0.5)
+      .string()};
 
-  label,
-  fieldset label {
-    display: block;
+  .label-text {
     font-size: 1.5rem;
+    text-transform: uppercase;
+    padding-left: 2rem;
   }
 
   fieldset {
@@ -37,10 +46,6 @@ const StyledForm = styled.form`
     grid-column: -2;
   }
 
-  /* fieldset label {
-    margin-bottom: 2.4rem;
-  } */
-
   ${Button} {
     justify-self: center;
     grid-column: 1/-1;
@@ -50,15 +55,8 @@ const StyledForm = styled.form`
 
 // React-select overrides
 const selectStyles = {
-  // container: (provided, state) => ({
-  //   ...provided,
-  //   margin: "1rem 0"
-  // }),
   control: (provided, state) => ({
     ...provided,
-    // borderWidth: "2px",
-    // boxShadow: "none",
-    // borderColor: state.isFocused ? colors.primary : colors.border
     padding: "0.4rem 0.8rem 0.4rem 1.2rem",
     marginTop: "0.8rem",
     height: "5rem",
@@ -71,9 +69,15 @@ const overrideTheme = theme => ({
   colors: {
     ...theme.colors,
     primary: colors.primary,
-    primary75: `rgba(${colors.primaryRGB}, 0.75)`,
-    primary50: `rgba(${colors.primaryRGB}, 0.50)`,
-    primary25: `rgba(${colors.primaryRGB}, 0.25)`,
+    primary75: Color(colors.primary)
+      .alpha(0.75)
+      .string(),
+    primary50: Color(colors.primary)
+      .alpha(0.5)
+      .string(),
+    primary25: Color(colors.primary)
+      .alpha(0.25)
+      .string(),
     neutral20: colors.border
   }
 });
@@ -121,7 +125,7 @@ class SearchBox extends Component {
     return (
       <StyledForm onSubmit={this.handleFormSubmit}>
         <label htmlFor="location">
-          Location
+          <span className="label-text">Location</span>
           <AsyncSelect
             inputId="location"
             value={{ value: this.state.location, label: this.state.location }}
@@ -139,10 +143,10 @@ class SearchBox extends Component {
         <fieldset>
           <legend className="visuallyhidden">Who can be your buddy?</legend>
           <label htmlFor="animal">
-            Animal
+            <span className="label-text">Animal</span>
             <Select
-              options={ANIMALS.map(a => ({ value: a, label: a }))}
               inputId="animal"
+              options={ANIMALS.map(a => ({ value: a, label: a }))}
               // https://github.com/JedWatson/react-select/issues/2669
               value={{ value: this.state.animal, label: this.state.animal }}
               isClearable
@@ -154,10 +158,10 @@ class SearchBox extends Component {
             />
           </label>
           <label htmlFor="breed">
-            Breed
+            <span className="label-text">Breed</span>
             <Select
-              options={this.state.breedList.map(b => ({ value: b, label: b }))}
               inputId="breed"
+              options={this.state.breedList.map(b => ({ value: b, label: b }))}
               isDisabled={!this.state.breedList.length === 0}
               // isMulti
               value={{ value: this.state.breed, label: this.state.breed }}

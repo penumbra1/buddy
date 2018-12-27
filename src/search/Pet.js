@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react";
 import { Link } from "@reach/router";
 import styled from "@emotion/styled";
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
+import Color from "color";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PlaceholderIcon from "../assets/placeholder.svg";
 import Home from "../assets/home.svg";
@@ -23,13 +24,22 @@ const iconStyles = {
 
 const StyledLink = styled(Link)`
   display: flex;
+  width: 100%;
+  max-width: 550px;
   margin: 0;
+  padding: 2.4rem;
+  padding-top: 2.1rem;
   background-color: ${colors.white};
-  padding: 2rem;
   text-decoration: none;
-  box-shadow: 1px 1px 1px 2px ${colors.shadow};
-  border-left: 3px solid ${colors.greyDark};
-  border-radius: 0.3rem 0.3rem 3.6rem 0.3rem;
+  box-shadow: 2px 1px 4px
+    ${Color(colors.greyDark)
+      .alpha(0.8)
+      .rgb()
+      .string()};
+  border-radius: 0.5rem 0.5rem 0.5rem 7.5rem;
+  border-left: 3px solid;
+  outline-offset: 1.8rem;
+  outline-color: ${colors.secondaryDark};
 
   .image-container {
     width: 120px;
@@ -66,19 +76,26 @@ const StyledLink = styled(Link)`
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   p {
-    font-size: 1.7rem;
     margin: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  button {
+    padding: 1rem;
+    /* margin avoids overflow on focus outline*/
+    margin-right: 2px;
+    background: transparent;
+    border: none;
   }
 `;
 
@@ -105,8 +122,7 @@ class Pet extends PureComponent {
       <StyledLink
         to={`/details/${id}`}
         css={css`
-          border-left: 3px solid
-            ${isFavorite ? colors.primaryLight : colors.greyDark};
+          border-left-color: ${isFavorite ? colors.primary : colors.greyDark};
         `}
       >
         {hero ? (
@@ -124,17 +140,21 @@ class Pet extends PureComponent {
         <div className="info">
           <h1>{name}</h1>
           <h2>{breed}</h2>
+          <p>{`${this.props.age} ${
+            this.props.sex === "F" ? "female" : "male"
+          }`}</p>
           <p>
             <span>
               <Home css={iconStyles} />
               {location}
             </span>
             <button
-              css={{
-                padding: "1rem",
-                background: "transparent",
-                border: "none"
-              }}
+              // css={{
+              //   padding: "1rem",
+              //   marginRight: "2px",
+              //   background: "transparent",
+              //   border: "none"
+              // }}
               onClick={this.handleClickFavorite}
             >
               <Heart

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "@reach/router";
 import styled from "@emotion/styled";
+import Color from "color";
 import Logo from "../assets/logo.svg";
 import Search from "../assets/search.svg";
 import Heart from "../assets/heart-line.svg";
@@ -14,9 +15,12 @@ const Wrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
   padding: 1rem 5vw;
-  border-radius: 0% 0% 15px 15px;
+  box-shadow: 0 1px 6px 1px
+    ${Color(colors.dark)
+      .alpha(0.5)
+      .rgb()
+      .string()};
 `;
 
 const Nav = styled.nav`
