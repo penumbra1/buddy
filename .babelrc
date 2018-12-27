@@ -8,9 +8,13 @@
           browsers: ["last 2 versions"]
         }
       }
-    ]
+    ],
+    "@emotion/babel-preset-css-prop"
   ],
-  plugins: ["@babel/plugin-proposal-class-properties"],
+  plugins: [
+    "@babel/plugin-proposal-class-properties",
+    "transform-inline-environment-variables"
+  ],
   env: {
     test: {
       plugins: ["dynamic-import-node"]

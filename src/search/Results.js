@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const Wrapper = styled.div`
+const Wrapper = styled.ul`
   display: grid;
-  grid-gap: 3rem 2.4rem;
+  margin: 0;
+  padding: 0;
+  grid-gap: 4rem;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
 
   @media (max-width: 768px) {

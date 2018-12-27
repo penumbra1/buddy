@@ -12,7 +12,7 @@ const Button = styled.button`
   border-radius: 2.5rem;
   display: block;
   height: 5rem;
-  margin: 0 auto;
+  width: 13rem;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
 

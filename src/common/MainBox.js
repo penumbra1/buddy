@@ -5,7 +5,7 @@ const MainBox = styled.main`
   background-color: ${colors.light};
   width: 95%;
   margin: 0 auto;
-  padding: 3rem;
+  padding: 5rem;
   border-radius: 5px;
 `;
 export default MainBox;

@@ -1,5 +1,3 @@
-import { getBreeds } from "../petfinder";
-
 export const updateSearchData = data => {
   return {
     type: "UPDATE_SEARCH_DATA",
@@ -15,7 +13,7 @@ export const updateResults = data => {
 };
 
 const defaultState = {
-  location: "Seattle, WA",
+  location: "Seattle, Washington",
   animal: "cat",
   breed: "",
   breedList: [],

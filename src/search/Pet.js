@@ -1,5 +1,3 @@
-/** @jsx jsx */
-
 import React, { PureComponent } from "react";
 import { Link } from "@reach/router";
 import styled from "@emotion/styled";
@@ -24,21 +22,18 @@ const iconStyles = {
 };
 
 const StyledLink = styled(Link)`
-  /* width: 100%; */
   display: flex;
   margin: 0;
   background-color: ${colors.white};
-  padding: 1.5rem;
+  padding: 2rem;
   text-decoration: none;
   box-shadow: 1px 1px 1px 2px ${colors.shadow};
-  /* border-left: ${props =>
-    `3px solid ${props.isFavorite ? colors.primaryLight : colors.greyDark}`}; */
-    border-left:
-      3px solid ${colors.greyDark};
+  border-left: 3px solid ${colors.greyDark};
+  border-radius: 0.3rem 0.3rem 3.6rem 0.3rem;
 
   .image-container {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     margin-right: 20px;
     border: 2px solid ${colors.greyLight};
     border-radius: 50%;
@@ -136,7 +131,6 @@ class Pet extends PureComponent {
             </span>
             <button
               css={{
-                flex: "0 0 4rem",
                 padding: "1rem",
                 background: "transparent",
                 border: "none"
@@ -147,6 +141,7 @@ class Pet extends PureComponent {
                 css={{
                   ...iconStyles,
                   margin: "auto",
+                  display: "block",
                   fill: isFavorite ? colors.primary : colors.greyLight
                 }}
               />
