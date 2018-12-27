@@ -35,14 +35,15 @@ At the moment react-lazy-load-image-component causes setTimeout warnings, althou
 
 ## Todo
 
+- Override form field focus color
+- Scrolljacking due to lazy loading images?
+- Find a way to debounce algolia calls (currently \_.debounce breaks react-select cache)
 - Search multiple breeds (fetch all in a thunk)
 - No results fallback
 - Cache breedLists for previously searched animals
-- City search dropdown
 - Pagination
 - Show form under header on search icon click if current route is Search, navigate to / if not (instead of the SearchParams route)
-- Likes
-- Form theme: add neutral shades instead of rgba(0,0,0,...)
+- Favorites route
 - In the details page, link to search all animals of this breed in this location
 - Persistence of liked pets to localStorage via redux-persist
 - Manage scroll position in the search list
