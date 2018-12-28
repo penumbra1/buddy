@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { Router } from "@reach/router";
 import { Provider as StoreProvider } from "react-redux";
 import store from "./store";
@@ -20,4 +19,4 @@ const App = () => (
   </StoreProvider>
 );
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default App;

@@ -3,7 +3,7 @@ import makeLoadable from "react-loadable";
 
 const Loading = ({ error, pastDelay }) => {
   if (error) {
-    return "oh-noes!";
+    return "Oops, something went wrong - please refresh the page.";
   }
   if (!pastDelay) return null;
   else {

@@ -2,17 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Select from "react-select";
 import AsyncSelect from "react-select/lib/Async";
-import debounce from "lodash.debounce";
-import throttle from "lodash.throttle";
 import { ANIMALS } from "petfinder-client";
 import { getBreeds } from "../petfinder";
+import getCities from "./algoliaPlaces";
 import { updateSearchData } from "./searchReducer";
 import Button from "../common/Button";
 import styled from "@emotion/styled";
 import Color from "color";
 import colors from "../colors";
-
-import getCities from "./algoliaPlaces";
 
 const StyledForm = styled.form`
   display: grid;
@@ -92,15 +89,13 @@ class SearchBox extends Component {
   };
 
   componentDidMount() {
-    // getCities("Minne").then(cities => console.log(cities));
+    // Fetch breeds for current animal unless they've already been fetched
     if (this.props.breedList.length === 0) {
       getBreeds(this.state.animal).then(breedList =>
         this.setState({ breedList })
       );
     }
   }
-
-  getLocationOptions = debounce(getCities, 500);
 
   showNoOptions = () => "Type to search";
 
