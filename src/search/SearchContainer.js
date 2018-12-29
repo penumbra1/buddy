@@ -43,7 +43,7 @@ class SearchContainer extends Component {
                 sex={pet.sex}
                 age={pet.age}
                 media={pet.media}
-                location={`${pet.contact.city}, ${pet.contact.state}`}
+                location={`${pet.contact.city.trim()}, ${pet.contact.state.trim()}`}
                 id={pet.id}
                 isFavorite={this.props.favorites.includes(pet.id)}
                 onClickFavorite={this.props.toggleFavorite}
@@ -67,4 +67,4 @@ const mapDispatchToProps = { updateResults, toggleFavorite };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(trackWindowScroll(SearchContainer));
+)(SearchContainer);

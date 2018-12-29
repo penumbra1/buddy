@@ -14,7 +14,7 @@ const Wrapper = styled.ul`
     grid-template-columns: 100%;
   }
 
-  p {
+  .placeholder {
     grid-column: 1/-1;
     margin: 5rem 0;
     text-align: center;
@@ -22,7 +22,9 @@ const Wrapper = styled.ul`
 `;
 
 const Results = ({ children }) => (
-  <Wrapper>{children.length > 0 ? children : <p>No results</p>}</Wrapper>
+  <Wrapper>
+    {children.length > 0 ? children : <p className="placeholder">No results</p>}
+  </Wrapper>
 );
 
 export default Results;

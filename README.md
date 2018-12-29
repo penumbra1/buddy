@@ -29,17 +29,15 @@ Upgraded to babel 7.
 
 Petfinder API data is not very clean: responses may contain announcements instead of animal profiles and there is no way to filter them out (announcements look exactly like animal entries with a name, a type/breed, a picture and a description). I'm leaving it as is for now.
 
-Suspense doesn't support data fetching and SSR yet so I'm using [react-lazy-load-image-component](https://www.npmjs.com/package/react-lazy-load-image-component) and [react-loadable](https://github.com/jamiebuilds/react-loadable) for now.
-
-At the moment react-lazy-load-image-component causes setTimeout warnings, although I used their trackWindowScroll HOC to optimize performance.
+Suspense doesn't support data fetching and SSR yet so I'm using [react-lazy-images](https://www.npmjs.com/package/react-lazy-images) and [react-loadable](https://github.com/jamiebuilds/react-loadable) for now.
 
 ## Todo
 
 - Override form field focus color
-- Scrolljacking due to lazy loading images?
+- Mobile card layout
 - Find a way to debounce algolia calls (currently \_.debounce breaks react-select cache)
 - Search multiple breeds (fetch all in a thunk)
-- No results fallback
+- Remove no results fallback on startup
 - Cache breedLists for previously searched animals
 - Pagination
 - Show form under header on search icon click if current route is Search, navigate to / if not (instead of the SearchParams route)

@@ -3,7 +3,7 @@ import { Link } from "@reach/router";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import Color from "color";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { LazyImage } from "react-lazy-images";
 import PlaceholderIcon from "../assets/placeholder.svg";
 import Home from "../assets/home.svg";
 import Heart from "../assets/heart.svg";
@@ -15,12 +15,7 @@ const Placeholder = () => (
   </div>
 );
 
-const iconStyles = {
-  height: "1.6rem",
-  display: "inline-block",
-  marginRight: "0.8rem",
-  fill: colors.greyDark
-};
+const iconStyles = {};
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -61,9 +56,10 @@ const StyledLink = styled(Link)`
   .info {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    align-content: space-between;
     overflow: hidden;
+    position: relative;
   }
 
   h1,
@@ -73,6 +69,7 @@ const StyledLink = styled(Link)`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 100%;
   }
 
   h1 {
@@ -81,13 +78,18 @@ const StyledLink = styled(Link)`
 
   h2 {
     font-size: 1.6rem;
+    margin-top: -0.8rem;
   }
 
   p {
     margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex: 1 0 60%;
+    margin-top: -0.8rem;
+
+    &:last-of-type {
+      margin-top: initial;
+      flex-shrink: 1;
+    }
   }
 
   button {
@@ -96,6 +98,9 @@ const StyledLink = styled(Link)`
     margin-right: 2px;
     background: transparent;
     border: none;
+    position: absolute;
+    bottom: -1rem;
+    right: -1rem;
   }
 `;
 
@@ -125,18 +130,20 @@ class Pet extends PureComponent {
           border-left-color: ${isFavorite ? colors.primary : colors.greyDark};
         `}
       >
-        {hero ? (
-          <LazyLoadImage
-            alt={name}
-            src={hero}
-            effect="opacity"
-            wrapperClassName="image-container"
-            scrollPosition={this.props.scrollPosition}
-          />
-        ) : (
-          <Placeholder />
-        )}
-
+        <div className="image-container">
+          {hero ? (
+            <LazyImage
+              alt={name}
+              src={hero}
+              placeholder={({ imageProps, ref }) => (
+                <div ref={ref} css={{ height: "100%", width: "100%", backgroundColor: colors.greyLight }} />
+              )}
+              actual={({ imageProps }) => <img {...imageProps} />}
+            />
+          ) : (
+            <Placeholder />
+          )}
+        </div>
         <div className="info">
           <h1>{name}</h1>
           <h2>{breed}</h2>
@@ -144,29 +151,27 @@ class Pet extends PureComponent {
             this.props.sex === "F" ? "female" : "male"
           }`}</p>
           <p>
-            <span>
-              <Home css={iconStyles} />
-              {location}
-            </span>
-            <button
-              // css={{
-              //   padding: "1rem",
-              //   marginRight: "2px",
-              //   background: "transparent",
-              //   border: "none"
-              // }}
-              onClick={this.handleClickFavorite}
-            >
-              <Heart
-                css={{
-                  ...iconStyles,
-                  margin: "auto",
-                  display: "block",
-                  fill: isFavorite ? colors.primary : colors.greyLight
-                }}
-              />
-            </button>
+            <Home
+              css={{
+                height: "1.6rem",
+                display: "inline-block",
+                marginRight: "0.6rem",
+                fill: colors.greyDark
+              }}
+            />
+            {location}
           </p>
+          <button onClick={this.handleClickFavorite}>
+            <Heart
+              css={{
+                ...iconStyles,
+                margin: "auto",
+                display: "block",
+                height: "1.8rem",
+                fill: isFavorite ? colors.primary : colors.greyLight
+              }}
+            />
+          </button>
         </div>
       </StyledLink>
     );
