@@ -19,11 +19,12 @@ Implemented adding to favorites.
 Added plugins:
 
 - [SVGR Parcel plugin](https://www.npmjs.com/package/@svgr/parcel-plugin-svgr)
-- [babel-plugin-emotion](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion) to reduce bundle size and enable sourcemaps - _can't use it until [this issue](https://github.com/parcel-bundler/parcel/issues/2237) is resolved_
-- [babel-plugin-transform-object-rest-spread](https://babeljs.io/docs/en/babel-plugin-transform-object-rest-spread.html).
+- [babel-plugin-emotion](https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion) to reduce bundle size and enable sourcemaps - which also needs [babel-plugin-transform-inline-environment-variables](https://www.npmjs.com/package/babel-plugin-transform-inline-environment-variables) (see [issue](https://github.com/emotion-js/emotion/issues/1132)).
 - [babel-plugin-dynamic-import-node](https://github.com/airbnb/babel-plugin-dynamic-import-node) to transpile dynamic imports in Jest
 
 Upgraded to babel 7.
+
+Set up SSR using [this example](https://github.com/reactivestack/parcel-react-ssr). Added a separate build step with Parcel instead of [babel-node](https://babeljs.io/docs/en/babel-node) as it's not recommended for production.
 
 ## Notes:
 

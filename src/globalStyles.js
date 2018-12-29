@@ -24,7 +24,7 @@ const GlobalStyles = () => (
       }
 
       body {
-        background-color: ${colors.greyLight};
+        background-color: ${colors.primaryLight};
         font-family: "Quicksand", sans-serif;
         margin: 0;
       }

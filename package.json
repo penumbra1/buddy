@@ -8,8 +8,11 @@
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "dev": "parcel src/index.html",
-    "build": "parcel build --public-url ./ src/index.html",
-    "start": "npm run build && babel-node --plugins inline-react-svg -- server.js"
+    "build:client": "parcel build --public-url ./dist src/index.html -d dist/client",
+    "build:server": "parcel build --public-url ./dist server/index.js -d dist/server --target=node",
+    "build": "npm run build:client && npm run build:server",
+    "serve": "node dist/server",
+    "start": "npm run build && npm run serve"
   },
   "repository": {
     "type": "git",
@@ -59,9 +62,10 @@
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "petfinder-client": "^0.0.3",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-lazy-images": "^1.1.0",
+    "react-lazy-load-image-component": "^1.1.5",
     "react-loadable": "^5.5.0",
     "react-redux": "^6.0.0",
     "react-select": "^2.1.2",

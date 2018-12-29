@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "@reach/router";
 import styled from "@emotion/styled";
 import Color from "color";
+import throttle from "lodash.throttle";
 import Logo from "../assets/logo.svg";
 import Search from "../assets/search.svg";
 import Heart from "../assets/heart-line.svg";
@@ -21,6 +22,25 @@ const Wrapper = styled.header`
       .alpha(0.5)
       .rgb()
       .string()};
+  transition: transform 0.2s ease-in;
+  transform-origin: center top;
+
+  #logo,
+  nav {
+    transition: inherit;
+  }
+
+  &.small {
+    transform: scaleY(0.7);
+
+    nav {
+      transform: scaleX(0.9) scaleY(calc(0.9 / 0.7));
+    }
+
+    #logo {
+      transform: scaleX(0.8) scaleY(calc(0.8 / 0.7));
+    }
+  }
 `;
 
 const Nav = styled.nav`
@@ -28,6 +48,7 @@ const Nav = styled.nav`
   flex-wrap: wrap;
   justify-content: flex-end;
   max-width: 30vw;
+  transition: inherit;
 `;
 
 const IconLink = ({ image, description, to, ...props }) => (
@@ -43,7 +64,7 @@ const StyledIconLink = styled(IconLink)`
   width: ${props => props.width || "3.6rem"};
   margin: 0 0.6rem;
   padding: 1.2rem;
-  transition: fill 0.15s ease-in-out;
+  transition: fill 0.15s ease-in;
 
   div svg {
     display: block;
@@ -55,31 +76,54 @@ const StyledIconLink = styled(IconLink)`
   }
 `;
 
-const Header = () => {
-  return (
-    <Wrapper>
-      <StyledIconLink
-        to="/"
-        image={<Logo />}
-        width="13rem"
-        fill={colors.primaryLight}
-        description="Buddy"
-      />
-      <Nav>
+class Header extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.resizeHeader);
+  }
+
+  resizeHeader = throttle(() => {
+    const distanceY = window.pageYOffset || document.documentElement.scrollTop;
+    const threshold = 200;
+    const header = document.querySelector("header");
+
+    if (distanceY > threshold) {
+      header.classList.add("small");
+    } else {
+      header.classList.remove("small");
+    }
+  }, 100);
+
+  render() {
+    return (
+      <Wrapper>
         <StyledIconLink
-          to="/search-params"
-          image={<Search />}
-          description="Search"
+          id="logo"
+          to="/"
+          image={<Logo />}
+          width="13rem"
+          fill={colors.primaryLight}
+          description="Buddy"
         />
-        <StyledIconLink
-          to="/favorites"
-          image={<Heart />}
-          description="Favorites"
-          width="3.4rem"
-        />
-      </Nav>
-    </Wrapper>
-  );
-};
+        <Nav>
+          <StyledIconLink
+            to="/search-params"
+            image={<Search />}
+            description="Search"
+          />
+          <StyledIconLink
+            to="/favorites"
+            image={<Heart />}
+            description="Favorites"
+            width="3.4rem"
+          />
+        </Nav>
+      </Wrapper>
+    );
+  }
+}
 
 export default Header;

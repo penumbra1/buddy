@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { trackWindowScroll } from "react-lazy-load-image-component";
 import MainBox from "../common/MainBox";
 import SearchBox from "./SearchBox";
 import Results from "./Results";
@@ -24,7 +23,7 @@ class SearchContainer extends Component {
 
   render() {
     return (
-      <MainBox className="search">
+      <>
         <SearchBox onSearch={this.handleSearch} />
         <Results>
           {this.props.results.map(pet => {
@@ -52,7 +51,7 @@ class SearchContainer extends Component {
             );
           })}
         </Results>
-      </MainBox>
+      </>
     );
   }
 }
