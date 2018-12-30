@@ -82,7 +82,7 @@ class Header extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener("scroll", this.resizeHeader);
+    window.addEventListener("scroll", this.resizeHeader, { passive: true });
   }
 
   resizeHeader = throttle(() => {

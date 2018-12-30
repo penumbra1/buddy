@@ -2,7 +2,6 @@ import React from "react";
 import pf from "petfinder-client";
 import { navigate } from "@reach/router";
 import Carousel from "./Carousel";
-import MainBox from "../common/MainBox";
 import Split from "../common/Split";
 import Button from "../common/Button";
 
@@ -59,7 +58,7 @@ class Details extends React.Component {
     } = this.state;
 
     return (
-      <MainBox className="details">
+      <>
         <Carousel media={media} />
         <div>
           <h1>{name}</h1>
@@ -76,7 +75,7 @@ class Details extends React.Component {
             </Split>
           ) : null}
         </div>
-      </MainBox>
+      </>
     );
   }
 }

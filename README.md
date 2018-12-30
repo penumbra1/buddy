@@ -6,15 +6,15 @@ This is essentially a fork of the [original course repo](https://github.com/btho
 
 ## Things I've done:
 
-Created a new logo and restyled everything, added a lazy-loading image placeholder.
+Created a new logo and restyled everything, added an image placeholder.
 
 Improved markup accessibility; added [focus-visible](https://github.com/WICG/focus-visible) to handle keyboard-only focus styles.
 
 Used powerful dropdowns from [react-select](https://github.com/JedWatson/react-select).
 
-Added more tests and an SVG mock.
+Wrote more tests.
 
-Implemented adding to favorites.
+Implemented likes.
 
 Added plugins:
 

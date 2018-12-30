@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import MainBox from "../common/MainBox";
 import SearchBox from "./SearchBox";
 import Results from "./Results";
 import { search } from "../petfinder";
