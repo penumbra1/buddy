@@ -52,7 +52,7 @@ const StyledForm = styled.form`
 
 // React-select overrides
 const selectStyles = {
-  control: (provided, state) => ({
+  control: provided => ({
     ...provided,
     padding: "0.4rem 0.8rem 0.4rem 1.2rem",
     marginTop: "0.8rem",

@@ -22,6 +22,7 @@ const Wrapper = styled.header`
       .alpha(0.5)
       .rgb()
       .string()};
+  will-change: transform;
   transition: transform 0.2s ease-in;
   transform-origin: center top;
 

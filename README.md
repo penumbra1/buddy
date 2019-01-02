@@ -32,9 +32,14 @@ Petfinder API data is not very clean: responses may contain announcements instea
 
 Suspense doesn't support data fetching and SSR yet so I'm using [react-lazy-images](https://www.npmjs.com/package/react-lazy-images) and [react-loadable](https://github.com/jamiebuilds/react-loadable) for now.
 
+Emotion injects my styles correctly on the server, but fails to inject the default styles from react-select, which causes FOUC on the form. I'll keep investigating.
+
 ## Todo
 
 - Override form field focus color
+- Adjust loader size in react-select
+- Avoid FOIT
+- SSR for react-select (or https://www.npmjs.com/package/react-no-ssr)
 - Mobile card layout
 - Find a way to debounce algolia calls (currently \_.debounce breaks react-select cache)
 - Search multiple breeds (fetch all in a thunk)
