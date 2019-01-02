@@ -14,7 +14,10 @@ const App = () => (
       <Router>
         <SearchContainer path="/" />
         <Split loader={() => import("./details/Details")} path="/details/:id" />
-        <Split loader={() => import("./SearchParams")} path="/search-params" />
+        <Split
+          loader={() => import("./favorites/Favorites")}
+          path="/favorites"
+        />
       </Router>
     </Layout>
   </StoreProvider>
