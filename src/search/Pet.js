@@ -4,18 +4,10 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import Color from "color";
 import { LazyImage } from "react-lazy-images";
-import PlaceholderIcon from "../assets/placeholder.svg";
+import Placeholder from "../assets/placeholder.svg";
 import Home from "../assets/home.svg";
 import Heart from "../assets/heart.svg";
 import colors from "../colors";
-
-const Placeholder = () => (
-  <div className="image-container">
-    <PlaceholderIcon fill={colors.greyDark} />
-  </div>
-);
-
-const iconStyles = {};
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -136,12 +128,19 @@ class Pet extends PureComponent {
               alt={name}
               src={hero}
               placeholder={({ imageProps, ref }) => (
-                <div ref={ref} css={{ height: "100%", width: "100%", backgroundColor: colors.greyLight }} />
+                <div
+                  ref={ref}
+                  css={{
+                    height: "100%",
+                    width: "100%",
+                    backgroundColor: colors.greyLight
+                  }}
+                />
               )}
               actual={({ imageProps }) => <img {...imageProps} />}
             />
           ) : (
-            <Placeholder />
+            <Placeholder fill={colors.greyDark} />
           )}
         </div>
         <div className="info">
@@ -164,7 +163,6 @@ class Pet extends PureComponent {
           <button onClick={this.handleClickFavorite}>
             <Heart
               css={{
-                ...iconStyles,
                 margin: "auto",
                 display: "block",
                 height: "1.8rem",

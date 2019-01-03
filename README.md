@@ -10,7 +10,7 @@ Created a new logo and restyled everything, added an image placeholder.
 
 Improved markup accessibility; added [focus-visible](https://github.com/WICG/focus-visible) to handle keyboard-only focus styles.
 
-Used powerful dropdowns from [react-select](https://github.com/JedWatson/react-select).
+Used [react-autosuggest](https://www.npmjs.com/package/react-autosuggest) to create dropdowns.
 
 Wrote more tests.
 
@@ -32,14 +32,12 @@ Petfinder API data is not very clean: responses may contain announcements instea
 
 Suspense doesn't support data fetching and SSR yet so I'm using [react-lazy-images](https://www.npmjs.com/package/react-lazy-images) and [react-loadable](https://github.com/jamiebuilds/react-loadable) for now.
 
-Emotion injects my styles correctly on the server, but fails to inject the default styles from react-select, which causes FOUC on the form. I'll keep investigating.
+I used [react-select](https://github.com/JedWatson/react-select) at first but Emotion 10 wouldn't pick up the default styles during SSR. React-select has ~1000 open issues, including recent ones with SSR, so I switched to the much more flexible (and lightweight!) react-autosuggest.
 
 ## Todo
 
 - Override form field focus color
-- Adjust loader size in react-select
 - Avoid FOIT
-- SSR for react-select (or https://www.npmjs.com/package/react-no-ssr)
 - Mobile card layout
 - Find a way to debounce algolia calls (currently \_.debounce breaks react-select cache)
 - Search multiple breeds (fetch all in a thunk)

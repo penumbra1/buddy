@@ -1,7 +1,6 @@
 import React from "react";
 import express from "express";
 import { renderToString } from "react-dom/server";
-import { renderStylesToString } from "emotion-server";
 import { ServerLocation } from "@reach/router";
 import fs from "fs";
 import path from "path";
@@ -24,7 +23,7 @@ fs.readFile(
           <App />
         </ServerLocation>
       );
-      const html = renderStylesToString(renderToString(jsx));
+      const html = renderToString(jsx);
       res.send(`${parts[0]}${html}${parts[1]}`);
       res.end();
     });

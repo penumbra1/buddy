@@ -10,6 +10,7 @@ import Button from "../common/Button";
 import styled from "@emotion/styled";
 import Color from "color";
 import colors from "../colors";
+import SearchInput from "./SearchInput";
 
 const StyledForm = styled.form`
   display: grid;
@@ -139,7 +140,7 @@ class SearchBox extends Component {
           <legend className="visuallyhidden">Who can be your buddy?</legend>
           <label htmlFor="animal">
             <span className="label-text">Animal</span>
-            <Select
+            {/* <Select
               inputId="animal"
               options={ANIMALS.map(a => ({ value: a, label: a }))}
               // https://github.com/JedWatson/react-select/issues/2669
@@ -150,13 +151,21 @@ class SearchBox extends Component {
               }
               theme={overrideTheme}
               styles={selectStyles}
+            /> */}
+            <SearchInput
+              id="animal"
+              options={ANIMALS}
+              onSelect={value => this.handleChange("animal", value)}
             />
           </label>
           <label htmlFor="breed">
             <span className="label-text">Breed</span>
             <Select
               inputId="breed"
-              options={this.state.breedList.map(b => ({ value: b, label: b }))}
+              options={this.state.breedList.map(b => ({
+                value: b,
+                label: b
+              }))}
               isDisabled={!this.state.breedList.length === 0}
               // isMulti
               value={{ value: this.state.breed, label: this.state.breed }}
