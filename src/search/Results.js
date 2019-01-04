@@ -21,9 +21,13 @@ const Wrapper = styled.ul`
   }
 `;
 
-const Results = ({ children }) => (
+const Results = ({ children = [] }) => (
   <Wrapper>
-    {children.length > 0 ? children : <p className="placeholder">No results</p>}
+    {children.length > 0 ? (
+      children
+    ) : (
+      <p className="placeholder">Nothing here...</p>
+    )}
   </Wrapper>
 );
 

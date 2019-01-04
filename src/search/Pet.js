@@ -100,11 +100,15 @@ class Pet extends PureComponent {
   handleClickFavorite = e => {
     e.preventDefault();
     e.stopPropagation();
-    this.props.onClickFavorite(this.props.id);
+    this.props.onClickFavorite(this.props.pet);
   };
 
   render() {
-    let { name, breed, media, location, id, isFavorite } = this.props;
+    let { name, age, media, id } = this.props.pet;
+    let breed = this.props.pet.breeds.join(", ");
+    let sex = this.props.pet.sex === "F" ? "female" : "male";
+    let location = `${this.props.pet.city}, ${this.props.pet.state}`;
+
     let photos = [];
     if (media && media.photos && media.photos.photo) {
       photos = media.photos.photo.filter(photo => photo["@size"] === "pn");
@@ -119,7 +123,9 @@ class Pet extends PureComponent {
       <StyledLink
         to={`/details/${id}`}
         css={css`
-          border-left-color: ${isFavorite ? colors.primary : colors.greyDark};
+          border-left-color: ${this.props.isFavorite
+            ? colors.primary
+            : colors.greyDark};
         `}
       >
         <div className="image-container">
@@ -146,9 +152,7 @@ class Pet extends PureComponent {
         <div className="info">
           <h1>{name}</h1>
           <h2>{breed}</h2>
-          <p>{`${this.props.age} ${
-            this.props.sex === "F" ? "female" : "male"
-          }`}</p>
+          <p>{`${age} ${sex}`}</p>
           <p>
             <Home
               css={{
@@ -166,7 +170,7 @@ class Pet extends PureComponent {
                 margin: "auto",
                 display: "block",
                 height: "1.8rem",
-                fill: isFavorite ? colors.primary : colors.greyLight
+                fill: this.props.isFavorite ? colors.primary : colors.greyLight
               }}
             />
           </button>

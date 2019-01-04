@@ -26,22 +26,27 @@ Upgraded to babel 7.
 
 Set up SSR using [this example](https://github.com/reactivestack/parcel-react-ssr). Added a separate build step with Parcel instead of [babel-node](https://babeljs.io/docs/en/babel-node) as it's not recommended for production.
 
+Cleaned the data received from the petfinder API.
+
 ## Notes:
 
-Petfinder API data is not very clean: responses may contain announcements instead of animal profiles and there is no way to filter them out (announcements look exactly like animal entries with a name, a type/breed, a picture and a description). I'm leaving it as is for now.
+Petfinder API data is a mess: responses may contain announcements that look exactly like animal profiles, with no logical way to filter them out. I'm leaving it as is for now.
 
 Suspense doesn't support data fetching and SSR yet so I'm using [react-lazy-images](https://www.npmjs.com/package/react-lazy-images) and [react-loadable](https://github.com/jamiebuilds/react-loadable) for now.
 
-I used [react-select](https://github.com/JedWatson/react-select) at first but Emotion 10 wouldn't pick up the default styles during SSR. React-select has ~1000 open issues, including recent ones with SSR, so I switched to the much more flexible (and lightweight!) react-autosuggest.
+I used [react-select](https://github.com/JedWatson/react-select) at first, but as it also relies on Emotion, I didn't manage to make it render the styles on the server (probably due to a conflict with my Emotion instance). React-select has ~1000 open issues, including recent ones with [SSR](https://github.com/JedWatson/react-select/issues/3317), so I switched to the much more flexible (and lightweight!) react-autosuggest.
 
-There is an [issue](https://github.com/babel/babel/issues/8829) with Babel: regeneratorRuntime polyfill for async/await is not included with useBuiltins: "usage".
+There is an [issue](https://github.com/babel/babel/issues/8829) with Babel: regeneratorRuntime polyfill for async/await is not included with useBuiltIns: "usage".
 
 ## Todo
 
-- Override form field focus color
+- Form dropdown & input:focused styles
+- Change favorites state structure to O(1) lookup (optional)
+- Move Results and Pet to common, make Pet rendering more flexible via children
 - Avoid FOIT
 - Mobile card layout
-- Find a way to debounce algolia calls (currently \_.debounce breaks react-select cache)
+- Clean up the media field
+- Photo gallery
 - Search multiple breeds (fetch all in a thunk)
 - Remove no results fallback on startup
 - Cache breedLists for previously searched animals

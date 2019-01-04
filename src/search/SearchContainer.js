@@ -26,24 +26,13 @@ class SearchContainer extends Component {
         <SearchBox onSearch={this.handleSearch} />
         <Results>
           {this.props.results.map(pet => {
-            let breed;
-            if (Array.isArray(pet.breeds.breed)) {
-              breed = pet.breeds.breed.join(", ");
-            } else {
-              breed = pet.breeds.breed;
-            }
             return (
               <Pet
-                animal={pet.animal}
                 key={pet.id}
-                name={pet.name}
-                breed={breed}
-                sex={pet.sex}
-                age={pet.age}
-                media={pet.media}
-                location={`${pet.contact.city.trim()}, ${pet.contact.state.trim()}`}
-                id={pet.id}
-                isFavorite={this.props.favorites.includes(pet.id)}
+                pet={pet}
+                isFavorite={
+                  !!this.props.favorites.find(fav => fav.id === pet.id)
+                }
                 onClickFavorite={this.props.toggleFavorite}
                 scrollPosition={this.props.scrollPosition}
               />

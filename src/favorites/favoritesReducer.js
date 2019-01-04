@@ -1,9 +1,10 @@
-export const toggleFavorite = id => ({ type: "TOGGLE_FAVORITE", id });
+export const toggleFavorite = pet => ({ type: "TOGGLE_FAVORITE", pet });
 
 export default (state = [], action) => {
-  const { type, id } = action;
-  if (type === "TOGGLE_FAVORITE" && id) {
-    if (state.includes(id)) return state.filter(fav => fav !== id);
-    else return [...state, id];
+  const { type, pet = {} } = action;
+  if (type === "TOGGLE_FAVORITE") {
+    if (state.find(fav => fav.id === pet.id))
+      return state.filter(fav => fav.id !== pet.id);
+    else return [...state, pet];
   } else return state;
 };
