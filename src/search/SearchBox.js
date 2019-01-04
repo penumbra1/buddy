@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Select from "react-select";
-import AsyncSelect from "react-select/lib/Async";
 import { ANIMALS } from "petfinder-client";
 import { getBreeds } from "../petfinder";
 import getCities from "./algoliaPlaces";
@@ -122,38 +120,20 @@ class SearchBox extends Component {
       <StyledForm onSubmit={this.handleFormSubmit}>
         <label htmlFor="location">
           <span className="label-text">Location</span>
-          <AsyncSelect
-            inputId="location"
-            value={{ value: this.state.location, label: this.state.location }}
-            defaultOptions={[]}
-            cacheOptions
-            loadOptions={getCities}
-            noOptionsMessage={this.showNoOptions}
-            onChange={option =>
-              this.handleChange("location", option ? option.value : "")
-            }
-            theme={overrideTheme}
-            styles={selectStyles}
+          <SearchInput
+            id="location"
+            value={this.state.location}
+            getSuggestions={getCities}
+            onSelect={value => this.handleChange("location", value)}
           />
         </label>
         <fieldset>
           <legend className="visuallyhidden">Who can be your buddy?</legend>
           <label htmlFor="animal">
             <span className="label-text">Animal</span>
-            {/* <Select
-              inputId="animal"
-              options={ANIMALS.map(a => ({ value: a, label: a }))}
-              // https://github.com/JedWatson/react-select/issues/2669
-              value={{ value: this.state.animal, label: this.state.animal }}
-              isClearable
-              onChange={option =>
-                this.handleChange("animal", option ? option.value : "")
-              }
-              theme={overrideTheme}
-              styles={selectStyles}
-            /> */}
             <SearchInput
               id="animal"
+              value={this.state.animal}
               options={ANIMALS}
               onSelect={value => this.handleChange("animal", value)}
             />
@@ -162,6 +142,8 @@ class SearchBox extends Component {
             <span className="label-text">Breed</span>
             <SearchInput
               id="breed"
+              value={this.state.breed}
+              key={this.state.animal} // Creates a new empty input if animal changes
               options={this.state.breedList}
               onSelect={value => this.handleChange("breed", value)}
             />

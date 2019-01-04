@@ -1,4 +1,3 @@
-// import debounce from "lodash.debounce";
 import algolia from "algoliasearch/lite";
 
 const client = algolia.initPlaces(
@@ -22,17 +21,14 @@ const searchByPrefix = prefix => {
     });
 };
 
-// const searchByPrefixDeb = debounce(searchByPrefix, 500);
-
 const getCities = prefix => {
-  if (prefix && prefix.length > 3) {
-    return searchByPrefix(prefix).then(hits => {
-      return hits.map(({ administrative: [state], locale_names: [name] }) => ({
-        value: `${name}, ${state}`,
-        label: `${name}, ${state}`
-      }));
-    });
-  } else return Promise.resolve([]);
+  if (!prefix) return Promise.resolve([]);
+  return searchByPrefix(prefix).then(hits => {
+    const cities = hits.map(
+      ({ administrative: [state], locale_names: [name] }) => `${name}, ${state}`
+    );
+    return cities;
+  });
 };
 
 export default getCities;

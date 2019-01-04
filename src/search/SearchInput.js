@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Autosuggest from "react-autosuggest";
 import styled from "@emotion/styled";
+import debounce from "lodash.debounce";
 import ArrowIcon from "../assets/arrow.svg";
 import colors from "../colors";
 
@@ -30,10 +31,17 @@ const theme = {
   }
 };
 
+// Fully uncontrolled component (owns the "draft" state, reports the "final" state)
+// https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
+
 class SearchInput extends Component {
   state = {
-    value: "",
+    value: this.props.value,
     suggestions: this.props.options
+  };
+
+  static defaultProps = {
+    options: []
   };
 
   static getSuggestionValue = suggestion => suggestion;
@@ -47,25 +55,36 @@ class SearchInput extends Component {
     </div>
   );
 
-  getSuggestions = value => {
+  getSuggestions = async value => {
     const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
 
-    return inputLength === 0
-      ? this.props.options
-      : this.props.options.filter(
-          option => option.toLowerCase().slice(0, inputLength) === inputValue
-        );
+    if (this.props.getSuggestions && inputValue.length > 3) {
+      const suggestions = await this.props.getSuggestions(inputValue);
+      return suggestions;
+    } else {
+      return this.props.options.filter(
+        option =>
+          option.toLowerCase().slice(0, inputValue.length) === inputValue
+      );
+    }
   };
 
-  onSuggestionsFetchRequested = async ({ value }) => {
-    const suggestions = this.props.getSuggestions
-      ? await this.props.getSuggestions(value)
-      : this.getSuggestions(value);
+  showSuggestions = async ({ value }) => {
+    let suggestions = [];
+
+    if (value.length === 0 || this.state.value === this.props.value) {
+      // Show all options when input is empty or has the old value
+      suggestions = this.props.options;
+    } else {
+      suggestions = await this.getSuggestions(value);
+    }
+
     this.setState({
       suggestions
     });
   };
+
+  onSuggestionsFetchRequested = debounce(this.showSuggestions, 300);
 
   onChange = (event, { newValue }) => {
     this.setState({
@@ -107,6 +126,7 @@ class SearchInput extends Component {
         onSuggestionSelected={this.onSuggestionSelected}
         inputProps={inputProps}
         renderInputComponent={SearchInput.renderInputComponent}
+        focusInputOnSuggestionClick={false}
         theme={theme}
       />
     );

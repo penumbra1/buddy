@@ -10,7 +10,7 @@
     "dev": "parcel src/index.html",
     "build:client": "parcel build --public-url ./dist/ src/index.html -d dist/client",
     "build:server": "parcel build --public-url ./dist/ server/index.js -d dist/server --target=node",
-    "build": "npm run build:client && npm run build:server",
+    "build": "npx rimraf dist && npm run build:client && npm run build:server",
     "serve": "node dist/server",
     "start": "npm run build && npm run serve"
   },
@@ -49,7 +49,8 @@
     "parcel-bundler": "^1.11.0",
     "parcel-plugin-bundle-visualiser": "^1.2.0",
     "prettier": "^1.15.3",
-    "react-test-renderer": "^16.7.0"
+    "react-test-renderer": "^16.7.0",
+    "rimraf": "^2.6.3"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
@@ -70,10 +71,8 @@
     "react-autosuggest": "^9.4.2",
     "react-dom": "^16.7.0",
     "react-lazy-images": "^1.1.0",
-    "react-lazy-load-image-component": "^1.2.0",
     "react-loadable": "^5.5.0",
     "react-redux": "^6.0.0",
-    "react-select": "^2.2.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   }
