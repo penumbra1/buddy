@@ -34,6 +34,8 @@ Suspense doesn't support data fetching and SSR yet so I'm using [react-lazy-imag
 
 I used [react-select](https://github.com/JedWatson/react-select) at first but Emotion 10 wouldn't pick up the default styles during SSR. React-select has ~1000 open issues, including recent ones with SSR, so I switched to the much more flexible (and lightweight!) react-autosuggest.
 
+There is an [issue](https://github.com/babel/babel/issues/8829) with Babel: regeneratorRuntime polyfill for async/await is not included with useBuiltins: "usage".
+
 ## Todo
 
 - Override form field focus color

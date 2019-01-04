@@ -1,3 +1,4 @@
+import "@babel/polyfill";
 import React from "react";
 import { Router } from "@reach/router";
 import { Provider as StoreProvider } from "react-redux";

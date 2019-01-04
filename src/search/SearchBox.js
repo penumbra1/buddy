@@ -160,21 +160,10 @@ class SearchBox extends Component {
           </label>
           <label htmlFor="breed">
             <span className="label-text">Breed</span>
-            <Select
-              inputId="breed"
-              options={this.state.breedList.map(b => ({
-                value: b,
-                label: b
-              }))}
-              isDisabled={!this.state.breedList.length === 0}
-              // isMulti
-              value={{ value: this.state.breed, label: this.state.breed }}
-              isClearable
-              onChange={option =>
-                this.handleChange("breed", option ? option.value : "")
-              }
-              theme={overrideTheme}
-              styles={selectStyles}
+            <SearchInput
+              id="breed"
+              options={this.state.breedList}
+              onSelect={value => this.handleChange("breed", value)}
             />
           </label>
         </fieldset>

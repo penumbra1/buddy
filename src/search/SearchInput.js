@@ -58,15 +58,18 @@ class SearchInput extends Component {
         );
   };
 
-  onChange = (event, { newValue }) => {
+  onSuggestionsFetchRequested = async ({ value }) => {
+    const suggestions = this.props.getSuggestions
+      ? await this.props.getSuggestions(value)
+      : this.getSuggestions(value);
     this.setState({
-      value: newValue
+      suggestions
     });
   };
 
-  onSuggestionsFetchRequested = ({ value }) => {
+  onChange = (event, { newValue }) => {
     this.setState({
-      suggestions: this.getSuggestions(value)
+      value: newValue
     });
   };
 
