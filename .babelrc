@@ -5,7 +5,7 @@
       "@babel/preset-env",
       {
         targets: {
-          browsers: ["> 0.5%, not dead"]
+          browsers: ["> 0.5%", "not dead"]
         },
         useBuiltIns: "entry"
       }

@@ -1,9 +1,9 @@
 import reducer, { toggleFavorite } from "./favoritesReducer";
 
 test("toggleFavorite creates an action object correctly", () => {
-  const action = toggleFavorite(1);
+  const action = toggleFavorite({});
 
-  expect(action).toEqual({ type: "TOGGLE_FAVORITE", id: 1 });
+  expect(action).toEqual({ type: "TOGGLE_FAVORITE", pet: {} });
 });
 
 test("reducer should return initial state", () => {
@@ -11,14 +11,14 @@ test("reducer should return initial state", () => {
 });
 
 test("reducer should toggle a favorite pet", () => {
-  const action = toggleFavorite(1);
+  const pet = { id: 1 };
+  const action = toggleFavorite(pet);
   let state = [];
 
-  expect(reducer(state, action)).toEqual([1]);
-
-  state = [1];
+  state = reducer(state, action);
+  expect(state).toEqual([pet]);
   expect(reducer(state, action)).toEqual([]);
 
-  state = [2, 1, 3];
-  expect(reducer(state, action)).toEqual([2, 3]);
+  state = [{ id: 2 }, pet, { id: 3 }];
+  expect(reducer(state, action)).toEqual([{ id: 2 }, { id: 3 }]);
 });

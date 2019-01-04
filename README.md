@@ -47,6 +47,7 @@ There is an [issue](https://github.com/babel/babel/issues/8829) with Babel: rege
 - Mobile card layout
 - Clean up the media field
 - Photo gallery
+- Split components are built both on client and server - serve them on demand?
 - Search multiple breeds (fetch all in a thunk)
 - Remove no results fallback on startup
 - Cache breedLists for previously searched animals
