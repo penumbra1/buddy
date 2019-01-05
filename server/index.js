@@ -1,5 +1,6 @@
 import React from "react";
 import express from "express";
+import expressStaticGzip from "express-static-gzip";
 import { renderToNodeStream } from "react-dom/server";
 import { ServerLocation } from "@reach/router";
 import fs from "fs";
@@ -13,10 +14,17 @@ fs.readFile(
   path.join(__dirname, "../client/index.html"),
   "utf8",
   (err, html) => {
+    const [htmlStart, htmlEnd] = html.split('<div id="root"></div>');
+
     // Middlewares
-    app.use("/dist", express.static(path.join(__dirname, "../client")));
+    app.use(
+      "/dist",
+      expressStaticGzip(path.join(__dirname, "../client"), {
+        enableBrotli: true,
+        orderPreference: ["br"]
+      })
+    );
     app.use((req, res) => {
-      const [htmlStart, htmlEnd] = html.split('<div id="root"></div>');
       const jsx = (
         <div id="root">
           <ServerLocation url={req.url}>

@@ -28,6 +28,10 @@ Set up SSR using [this example](https://github.com/reactivestack/parcel-react-ss
 
 Cleaned the data received from the petfinder API.
 
+Added a preloaded latin-only font using [this technique](http://ashton.codes/preload-google-fonts-using-resource-hints/) to get rid of FOIT.
+
+Enabled gzip and brotli compression in Parcel using [parcel-plugin-compress](https://www.npmjs.com/package/parcel-plugin-compress) and on the server using [express-static-gzip](https://www.npmjs.com/package/express-static-gzip).
+
 ## Notes:
 
 Petfinder API data is a mess: responses may contain announcements that look exactly like animal profiles, with no logical way to filter them out. I'm leaving it as is for now.
@@ -45,7 +49,6 @@ Parcel tree-shaking is still experimental and [bugged](https://github.com/parcel
 - Form dropdown & input:focused styles
 - Change favorites state structure to O(1) lookup (optional)
 - Move Results and Pet to common, make Pet rendering more flexible via children
-- Avoid FOIT
 - Mobile card layout
 - Clean up the media field
 - Photo gallery
