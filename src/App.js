@@ -7,6 +7,7 @@ import GlobalStyles from "./globalStyles";
 import Layout from "./common/Layout";
 import SearchContainer from "./search/SearchContainer";
 import Split from "./common/Split";
+import NotFound from "./common/NotFound";
 
 const App = () => (
   <StoreProvider store={store}>
@@ -19,6 +20,7 @@ const App = () => (
           loader={() => import("./favorites/Favorites")}
           path="/favorites"
         />
+        <NotFound default />
       </Router>
     </Layout>
   </StoreProvider>

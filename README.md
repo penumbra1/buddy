@@ -38,6 +38,8 @@ I used [react-select](https://github.com/JedWatson/react-select) at first, but a
 
 There is an [issue](https://github.com/babel/babel/issues/8829) with Babel: regeneratorRuntime polyfill for async/await is not included with useBuiltIns: "usage".
 
+Parcel tree-shaking is still experimental and [bugged](https://github.com/parcel-bundler/parcel/issues/2300):(
+
 ## Todo
 
 - Form dropdown & input:focused styles
