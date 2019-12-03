@@ -4,6 +4,8 @@ This is essentially a fork of the [original course repo](https://github.com/btho
 
 ---
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/penumbra1/buddy.svg)](https://greenkeeper.io/)
+
 ## Things I've done:
 
 Created a new logo and restyled everything, added an image placeholder.
